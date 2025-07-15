@@ -1,0 +1,695 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="id"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Data Jemaat GSRI Singkawang&lt;/title&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Bootstrap CSS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Bootstrap Icons --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Google Fonts: Inter --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f8f9fa;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.header-section {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #0d6efd, #6f42c1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.header-section h1 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.2rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.header-section .lead {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.9rem; /* Ukuran font lebih kecil lagi */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 8px rgba(0,0,0,0.05);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-icon {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-right: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.table-responsive {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 60vh;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>thead th {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: sticky;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #e9ecef;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Perlebar kolom spesifik */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.table th:nth-child(3), .table td:nth-child(3), /* Tgl Baptis */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.table th:nth-child(7), .table td:nth-child(7) { /* Tgl Lahir */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-width: 110px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.table th:nth-child(9), .table td:nth-child(9) { /* Alamat */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-width: 200px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container my-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- HEADER HALAMAN --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;header class="header-section"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="display-5 fw-bold"&gt;DATA JEMAAT&lt;br&gt;GSRI SINGKAWANG&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="lead mb-0"&gt;Dibuat oleh Tim MediaTech GSRI Skw&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="badge bg-light text-dark mt-2" id="appVersion"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;main&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- KOLOM FORM INPUT --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-header bg-primary text-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h5 class="mb-0" id="formTitle"&gt;&lt;i class="bi bi-person-plus-fill btn-icon"&gt;&lt;/i&gt;Tambah Data Jemaat&lt;/h5&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-body"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;form id="formJemaat"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;fieldset id="formFieldset"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="hidden" id="editId"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="col-md-4 mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;label for="noJemaat" class="form-label"&gt;No Jemaat&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;input type="number" class="form-control" id="noJemaat"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="col-md-4 mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;label for="noBaptis" class="form-label"&gt;No Baptis&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;input type="text" class="form-control" id="noBaptis"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="col-md-4 mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;label for="tglBaptis" class="form-label"&gt;Tanggal Baptis&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;input type="date" class="form-control" id="tglBaptis"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="row mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="col-md-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;label for="nama" class="form-label"&gt;Nama&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;input type="text" class="form-control" id="nama" oninput="this.value = this.value.toUpperCase()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="col-md-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;label class="form-label"&gt;Jenis Kelamin&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="form-check form-check-inline"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;input class="form-check-input" type="radio" name="jenisKelamin" id="kelaminPria" value="Pria" checked&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;label class="form-check-label" for="kelaminPria"&gt;Pria&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="form-check form-check-inline"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;input class="form-check-input" type="radio" name="jenisKelamin" id="kelaminWanita" value="Wanita"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;label class="form-check-label" for="kelaminWanita"&gt;Wanita&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;div class="col-md-8 mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;label for="tempatLahir" class="form-label"&gt;Tempat Lahir&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;input type="text" class="form-control" id="tempatLahir"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="col-md-4 mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;label for="tglLahir" class="form-label"&gt;Tanggal Lahir&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;input type="date" class="form-control" id="tglLahir"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="noTelepon" class="form-label"&gt;No Telepon / WhatsApp&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="tel" class="form-control" id="noTelepon"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="alamat" class="form-label"&gt;Alamat Lengkap&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;textarea class="form-control" id="alamat" rows="3"&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="statusJemaat" class="form-label"&gt;Status Jemaat&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;select class="form-select" id="statusJemaat"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;option value="Aktif" selected&gt;Aktif&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;option value="Tidak Aktif"&gt;Tidak Aktif&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;option value="Pindah"&gt;Pindah&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;option value="Meninggal"&gt;Meninggal&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/fieldset&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="d-flex justify-content-end gap-2" id="formButtons"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                             </span>&lt;!-- Tombol akan di-render oleh JavaScript --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/form&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- KOLOM TABEL DATA --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="d-flex flex-wrap justify-content-between align-items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h5 class="mb-0"&gt;Daftar Jemaat (&lt;span id="jumlahData"&gt;0&lt;/span&gt;)&lt;/h5&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;small class="text-muted" id="updateTerakhir"&gt;Update terakhir: -&lt;/small&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="mt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="cariData" class="form-control" placeholder="Cari data berdasarkan No, Nama, Tahun Lahir/Baptis, dll..."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-body p-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="table-responsive"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;table class="table table-striped table-hover mb-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th scope="col"&gt;No Jemaat&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th scope="col"&gt;No Baptis&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th scope="col"&gt;Tgl Baptis&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th scope="col"&gt;Nama&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th scope="col"&gt;Jenis Kelamin&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th scope="col"&gt;Tempat Lahir&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th scope="col"&gt;Tgl Lahir&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th scope="col"&gt;No. Telepon&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th scope="col"&gt;Alamat&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th scope="col"&gt;Status&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th scope="col"&gt;Aksi&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;tbody id="tabelJemaat"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;!-- Data akan diisi oleh JavaScript --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card-footer d-flex flex-wrap gap-2 justify-content-end"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;button class="btn btn-success btn-sm" id="btnImport"&gt;&lt;i class="bi bi-file-earmark-arrow-up btn-icon"&gt;&lt;/i&gt;Import File&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;button class="btn btn-primary btn-sm" id="btnExport"&gt;&lt;i class="bi bi-file-earmark-arrow-down btn-icon"&gt;&lt;/i&gt;Export File&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;button class="btn btn-danger btn-sm" id="btnHapusSemua" data-bs-toggle="modal" data-bs-target="#hapusSemuaModal"&gt;&lt;i class="bi bi-trash3 btn-icon"&gt;&lt;/i&gt;Hapus Tabel&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/main&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Hidden file input for import --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="file" id="importFileInput" accept=".tsv" style="display: none;"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Modal Notifikasi Umum --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="modal-dialog modal-dialog-centered"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="modal-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="modal-title fs-5" id="notificationModalLabel"&gt;Notifikasi&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="modal-body" id="notificationModalBody"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Pesan notifikasi akan disisipkan di sini --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="modal-footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="btn btn-primary" data-bs-dismiss="modal"&gt;OK&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Modal Konfirmasi Hapus Baris --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="modal-dialog modal-dialog-centered"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="modal-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="modal-title fs-5" id="confirmDeleteModalLabel"&gt;Konfirmasi Hapus&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="modal-body"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Apakah Anda yakin ingin menghapus data ini?</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="modal-footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="btn btn-secondary" data-bs-dismiss="modal"&gt;Batal&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="btn btn-danger" id="btnKonfirmasiHapusBaris"&gt;Ya, Hapus&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Modal Konfirmasi Hapus Semua --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal fade" id="hapusSemuaModal" tabindex="-1" aria-labelledby="hapusSemuaModalLabel" aria-hidden="true"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="modal-dialog modal-dialog-centered"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="modal-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="modal-title fs-5" id="hapusSemuaModalLabel"&gt;Konfirmasi Hapus Semua Data&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="modal-body"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Apakah Anda yakin ingin menghapus SEMUA data jemaat? Tindakan ini tidak dapat dibatalkan.</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="modal-footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="btn btn-secondary" data-bs-dismiss="modal"&gt;Batal&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="btn btn-danger" id="btnKonfirmasiHapusSemua"&gt;Ya, Hapus Semua&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Bootstrap JS Bundle --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', function() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- VARIABEL GLOBAL &amp; REFERENSI DOM ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const formJemaat = document.getElementById('formJemaat');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const formTitle = document.getElementById('formTitle');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const formFieldset = document.getElementById('formFieldset');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const formButtons = document.getElementById('formButtons');</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const editIdInput = document.getElementById('editId');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const noJemaatInput = document.getElementById('noJemaat');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const noBaptisInput = document.getElementById('noBaptis');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const namaInput = document.getElementById('nama');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const tempatLahirInput = document.getElementById('tempatLahir');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const tglLahirInput = document.getElementById('tglLahir');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const tglBaptisInput = document.getElementById('tglBaptis');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const noTeleponInput = document.getElementById('noTelepon');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const alamatInput = document.getElementById('alamat');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const statusJemaatSelect = document.getElementById('statusJemaat');</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const tabelJemaat = document.getElementById('tabelJemaat');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const jumlahDataSpan = document.getElementById('jumlahData');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const updateTerakhirSpan = document.getElementById('updateTerakhir');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const cariDataInput = document.getElementById('cariData');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const btnImport = document.getElementById('btnImport');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const importFileInput = document.getElementById('importFileInput');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const btnExport = document.getElementById('btnExport');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const btnKonfirmasiHapusSemua = document.getElementById('btnKonfirmasiHapusSemua');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const versionSpan = document.getElementById('appVersion');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const STORAGE_KEY = 'dataJemaatGSRISingkawang';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const LAST_UPDATE_KEY = 'dataJemaatGSRILastUpdate';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const appVersion = 136; // Versi kode statis, diubah manual setiap ada revisi kode</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let dataJemaat = [];</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Modal Instances</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let hapusSemuaModal, notificationModal, confirmDeleteModal;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let rowToDeleteId = null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- FUNGSI INTI ---</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* Menampilkan notifikasi menggunakan modal.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* @param {string} message - Pesan yang akan ditampilkan.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function showNotification(message) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const modalBody = document.getElementById('notificationModalBody');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>modalBody.textContent = message;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>notificationModal.show();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* Memuat data dari localStorage dan menginisialisasi modal.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function loadDataFromStorage() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const data = localStorage.getItem(STORAGE_KEY);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dataJemaat = data ? JSON.parse(data) : [];</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderTable();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updateInfo();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updateFormState('add'); // Set form ke state awal</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Inisialisasi semua modal</p>
+<p class="p1"><span class="Apple-converted-space">                </span>hapusSemuaModal = new bootstrap.Modal(document.getElementById('hapusSemuaModal'));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* Menyimpan data ke localStorage dan memperbarui info.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function saveDataToStorage() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>localStorage.setItem(STORAGE_KEY, JSON.stringify(dataJemaat));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const timestamp = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>localStorage.setItem(LAST_UPDATE_KEY, timestamp.toISOString());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderTable();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updateInfo();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* Merender ulang tabel data jemaat.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* @param {Array} data - Data yang akan ditampilkan di tabel (default: semua data).</p>
+<p class="p1"><span class="Apple-converted-space">             </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function renderTable(data = dataJemaat) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tabelJemaat.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (data.length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tabelJemaat.innerHTML = '&lt;tr&gt;&lt;td colspan="11" class="text-center"&gt;Tidak ada data.&lt;/td&gt;&lt;/tr&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>data.forEach(jemaat =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const tr = document.createElement('tr');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tr.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td&gt;${jemaat.no}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td&gt;${jemaat.noBaptis || '-'}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td&gt;${formatDate(jemaat.tglBaptis)}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td&gt;${jemaat.nama || '-'}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td&gt;${jemaat.jenisKelamin || 'Pria'}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td&gt;${jemaat.tempatLahir || '-'}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td&gt;${formatDate(jemaat.tglLahir)}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td&gt;${jemaat.noTelepon || '-'}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td&gt;${jemaat.alamat}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td&gt;${jemaat.statusJemaat || 'Aktif'}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button class="btn btn-info btn-sm btn-view" data-id="${jemaat.id}" title="Lihat Data"&gt;&lt;i class="bi bi-eye-fill"&gt;&lt;/i&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button class="btn btn-warning btn-sm btn-edit" data-id="${jemaat.id}" title="Edit Data"&gt;&lt;i class="bi bi-pencil-square"&gt;&lt;/i&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button class="btn btn-danger btn-sm btn-delete" data-id="${jemaat.id}" title="Hapus Data"&gt;&lt;i class="bi bi-trash"&gt;&lt;/i&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tabelJemaat.appendChild(tr);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* Memperbarui informasi jumlah data, waktu update terakhir, dan versi aplikasi.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function updateInfo() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>jumlahDataSpan.textContent = dataJemaat.length;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const lastUpdate = localStorage.getItem(LAST_UPDATE_KEY);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (lastUpdate) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const d = new Date(lastUpdate);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>updateTerakhirSpan.textContent = `Update terakhir: ${d.toLocaleDateString('id-ID')} ${d.toLocaleTimeString('id-ID')}`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>updateTerakhirSpan.textContent = 'Update terakhir: -';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const major = Math.floor(appVersion / 100);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const minor = appVersion % 100;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>versionSpan.textContent = `Versi ${major}.${minor.toString().padStart(2, '0')}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* Mengatur state form (tampilan, tombol, dan field).</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* @param {'add'|'view'|'edit'} mode - Mode form.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* @param {object|null} jemaat - Data jemaat untuk mode view/edit.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function updateFormState(mode, jemaat = null) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>formJemaat.reset();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>editIdInput.value = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>formFieldset.disabled = false;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>switch(mode) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>case 'view':</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>formTitle.innerHTML = '&lt;i class="bi bi-person-lines-fill btn-icon"&gt;&lt;/i&gt;Lihat Data Jemaat';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>formFieldset.disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (jemaat) populateForm(jemaat);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>formButtons.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button type="button" class="btn btn-primary btn-sm" id="btnEditFromView"&gt;&lt;i class="bi bi-pencil-square btn-icon"&gt;&lt;/i&gt;Edit&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button type="button" class="btn btn-secondary btn-sm" id="btnOKFromView"&gt;&lt;i class="bi bi-check-lg btn-icon"&gt;&lt;/i&gt;OK&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.getElementById('btnEditFromView').addEventListener('click', () =&gt; updateFormState('edit', jemaat));</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.getElementById('btnOKFromView').addEventListener('click', () =&gt; updateFormState('add'));</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>case 'edit':</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>formTitle.innerHTML = '&lt;i class="bi bi-pencil-fill btn-icon"&gt;&lt;/i&gt;Edit Data Jemaat';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (jemaat) populateForm(jemaat);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>formButtons.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button type="button" class="btn btn-warning btn-sm" id="btnCancelEdit"&gt;&lt;i class="bi bi-x-circle btn-icon"&gt;&lt;/i&gt;Batal&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button type="submit" class="btn btn-success btn-sm"&gt;&lt;i class="bi bi-check-square btn-icon"&gt;&lt;/i&gt;Update Data&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.getElementById('btnCancelEdit').addEventListener('click', () =&gt; updateFormState('add'));</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>case 'add':</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>default:</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>formTitle.innerHTML = '&lt;i class="bi bi-person-plus-fill btn-icon"&gt;&lt;/i&gt;Tambah Data Jemaat';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>formButtons.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button type="button" class="btn btn-secondary btn-sm" id="btnResetForm"&gt;&lt;i class="bi bi-x-lg btn-icon"&gt;&lt;/i&gt;Hapus Form&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button type="submit" class="btn btn-primary btn-sm"&gt;&lt;i class="bi bi-save btn-icon"&gt;&lt;/i&gt;Simpan Data&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.getElementById('btnResetForm').addEventListener('click', () =&gt; formJemaat.reset());</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* Mengisi form dengan data jemaat.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* @param {object} jemaat - Objek data jemaat.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function populateForm(jemaat) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>editIdInput.value = jemaat.id;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>noJemaatInput.value = jemaat.no;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>noBaptisInput.value = jemaat.noBaptis;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>namaInput.value = jemaat.nama;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (jemaat.jenisKelamin &amp;&amp; document.querySelector(`input[name="jenisKelamin"][value="${jemaat.jenisKelamin}"]`)) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.querySelector(`input[name="jenisKelamin"][value="${jemaat.jenisKelamin}"]`).checked = true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('kelaminPria').checked = true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempatLahirInput.value = jemaat.tempatLahir;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tglLahirInput.value = jemaat.tglLahir;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tglBaptisInput.value = jemaat.tglBaptis;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>noTeleponInput.value = jemaat.noTelepon;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alamatInput.value = jemaat.alamat;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>statusJemaatSelect.value = jemaat.statusJemaat || 'Aktif';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* Memformat tanggal dari YYYY-MM-DD ke DD-MM-YYYY.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* @param {string} dateString - String tanggal dalam format YYYY-MM-DD.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* @returns {string} Tanggal terformat atau string kosong.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function formatDate(dateString) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!dateString) return '-';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const [year, month, day] = dateString.split('-');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return `${day}-${month}-${year}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- EVENT LISTENERS ---</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* Menangani submit form untuk menambah atau mengedit data.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">            </span>formJemaat.addEventListener('submit', function(e) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const id = editIdInput.value;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const noJemaat = noJemaatInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const nama = namaInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const alamat = alamatInput.value.trim();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Validasi input wajib</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const errors = [];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!noJemaat) errors.push('No Jemaat');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!nama) errors.push('Nama');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!alamat) errors.push('Alamat Lengkap');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (errors.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showNotification(`Data berikut wajib diisi: ${errors.join(', ')}.`);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Cek duplikasi No Jemaat</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (dataJemaat.some(j =&gt; j.no === noJemaat &amp;&amp; j.id !== id)) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showNotification('No Jemaat sudah ada. Silakan gunakan nomor lain.');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dataBaru = {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>id: id || Date.now().toString(),</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>no: noJemaat,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>noBaptis: noBaptisInput.value.trim(),</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>nama: nama,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>jenisKelamin: document.querySelector('input[name="jenisKelamin"]:checked').value,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tempatLahir: tempatLahirInput.value.trim(),</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tglLahir: tglLahirInput.value,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tglBaptis: tglBaptisInput.value,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>noTelepon: noTeleponInput.value.trim(),</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>alamat: alamat,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>statusJemaat: statusJemaatSelect.value</p>
+<p class="p1"><span class="Apple-converted-space">                </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (id) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const index = dataJemaat.findIndex(j =&gt; j.id === id);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (index &gt; -1) dataJemaat[index] = dataBaru;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>dataJemaat.push(dataBaru);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>dataJemaat.sort((a, b) =&gt; a.no - b.no);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>saveDataToStorage();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updateFormState('add');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/**</p>
+<p class="p1"><span class="Apple-converted-space">             </span>* Menangani klik pada tombol di tabel.</p>
+<p class="p1"><span class="Apple-converted-space">             </span>*/</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tabelJemaat.addEventListener('click', function(e) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const target = e.target.closest('button');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!target) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const id = target.dataset.id;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const jemaat = dataJemaat.find(j =&gt; j.id === id);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (target.classList.contains('btn-view')) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (jemaat) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>updateFormState('view', jemaat);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>window.scrollTo({ top: 0, behavior: 'smooth' });</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (target.classList.contains('btn-edit')) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (jemaat) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>updateFormState('edit', jemaat);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>window.scrollTo({ top: 0, behavior: 'smooth' });</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (target.classList.contains('btn-delete')) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>rowToDeleteId = id;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>confirmDeleteModal.show();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('btnKonfirmasiHapusBaris').addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (rowToDeleteId) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>dataJemaat = dataJemaat.filter(j =&gt; j.id !== rowToDeleteId);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>saveDataToStorage();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>updateFormState('add');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>rowToDeleteId = null;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>confirmDeleteModal.hide();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>cariDataInput.addEventListener('input', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const searchTerm = this.value.toLowerCase();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const filteredData = dataJemaat.filter(j =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return (j.no &amp;&amp; j.no.toLowerCase().includes(searchTerm)) ||</p>
+<p class="p1"><span class="Apple-converted-space">                           </span>(j.noBaptis &amp;&amp; j.noBaptis.toLowerCase().includes(searchTerm)) ||</p>
+<p class="p1"><span class="Apple-converted-space">                           </span>(j.nama &amp;&amp; j.nama.toLowerCase().includes(searchTerm)) ||</p>
+<p class="p1"><span class="Apple-converted-space">                           </span>(j.jenisKelamin &amp;&amp; j.jenisKelamin.toLowerCase().includes(searchTerm)) ||</p>
+<p class="p1"><span class="Apple-converted-space">                           </span>(j.tempatLahir &amp;&amp; j.tempatLahir.toLowerCase().includes(searchTerm)) ||</p>
+<p class="p1"><span class="Apple-converted-space">                           </span>(j.noTelepon &amp;&amp; j.noTelepon.toLowerCase().includes(searchTerm)) ||</p>
+<p class="p1"><span class="Apple-converted-space">                           </span>(j.statusJemaat &amp;&amp; j.statusJemaat.toLowerCase().includes(searchTerm)) ||</p>
+<p class="p1"><span class="Apple-converted-space">                           </span>(j.alamat &amp;&amp; j.alamat.toLowerCase().includes(searchTerm)) ||</p>
+<p class="p1"><span class="Apple-converted-space">                           </span>(j.tglLahir &amp;&amp; j.tglLahir.startsWith(searchTerm)) ||</p>
+<p class="p1"><span class="Apple-converted-space">                           </span>(j.tglBaptis &amp;&amp; j.tglBaptis.startsWith(searchTerm));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderTable(filteredData);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>btnKonfirmasiHapusSemua.addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dataJemaat = [];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>saveDataToStorage();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updateFormState('add');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>hapusSemuaModal.hide();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>btnExport.addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (dataJemaat.length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>showNotification('Tidak ada data untuk diekspor.');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const headers = ['No Jemaat', 'No Baptis', 'Tgl Baptis', 'Nama', 'Jenis Kelamin', 'Tempat Lahir', 'Tgl Lahir', 'No Telepon', 'Alamat', 'Status Jemaat'];</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let tsvContent = headers.join('\t') + '\n';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>dataJemaat.forEach(jemaat =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const row = [</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>jemaat.no || '', jemaat.noBaptis || '', jemaat.tglBaptis || '', jemaat.nama || '',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>jemaat.jenisKelamin || '', jemaat.tempatLahir || '', jemaat.tglLahir || '',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>jemaat.noTelepon || '', (jemaat.alamat || '').replace(/\n/g, ' '), jemaat.statusJemaat || ''</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>];</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>tsvContent += row.join('\t') + '\n';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const blob = new Blob([tsvContent], { type: 'text/tab-separated-values;charset=utf-8;' });</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const link = document.createElement("a");</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>link.href = URL.createObjectURL(blob);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>link.download = "Data-Jemaat-GSRI-Skw.tsv";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.body.appendChild(link);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>link.click();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.body.removeChild(link);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>URL.revokeObjectURL(link.href);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.error('Export failed:', error);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showNotification('Gagal mengekspor file. Silakan coba lagi atau hubungi dukungan teknis.');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>btnImport.addEventListener('click', () =&gt; importFileInput.click());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>importFileInput.addEventListener('change', function(e) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const file = e.target.files[0];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!file) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const reader = new FileReader();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>reader.onload = function(event) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const content = event.target.result;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const lines = content.split('\n').filter(line =&gt; line.trim() !== '');</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (lines.length &lt;= 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>showNotification('File kosong atau hanya berisi header.');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const importedData = [];</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>for (let i = 1; i &lt; lines.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const cols = lines[i].split('\t');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const noJemaat = cols[0] ? cols[0].trim() : '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (noJemaat &amp;&amp; !dataJemaat.some(j =&gt; j.no === noJemaat)) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const newJemaat = {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>id: Date.now().toString() + i,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>no: noJemaat,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>noBaptis: cols[1] ? cols[1].trim() : '',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>tglBaptis: cols[2] ? cols[2].trim() : '',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>nama: cols[3] ? cols[3].trim() : '',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>jenisKelamin: cols[4] ? cols[4].trim() : 'Pria',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>tempatLahir: cols[5] ? cols[5].trim() : '',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>tglLahir: cols[6] ? cols[6].trim() : '',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>noTelepon: cols[7] ? cols[7].trim() : '',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>alamat: cols[8] ? cols[8].trim() : '',</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>statusJemaat: cols[9] ? cols[9].trim() : 'Aktif'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>importedData.push(newJemaat);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (importedData.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>dataJemaat.push(...importedData);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>dataJemaat.sort((a, b) =&gt; a.no - b.no);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>saveDataToStorage();</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>showNotification(`${importedData.length} data baru berhasil diimpor.`);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>showNotification('Tidak ada data baru yang diimpor. Mungkin No Jemaat sudah ada atau format file salah.');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>importFileInput.value = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>};</p>
+<p class="p1"><span class="Apple-converted-space">                </span>reader.onerror = () =&gt; showNotification('Gagal membaca file.');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>reader.readAsText(file);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- INISIALISASI APLIKASI ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>loadDataFromStorage();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
