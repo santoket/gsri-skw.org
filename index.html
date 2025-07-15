@@ -51,12 +51,15 @@
             background-color: #e9ecef;
         }
         /* Perlebar kolom spesifik */
+        .table th:nth-child(4), .table td:nth-child(4) { /* Nama */
+            min-width: 125px; /* Dikecilkan 50% */
+        }
         .table th:nth-child(3), .table td:nth-child(3), /* Tgl Baptis */
         .table th:nth-child(7), .table td:nth-child(7) { /* Tgl Lahir */
             min-width: 110px;
         }
         .table th:nth-child(9), .table td:nth-child(9) { /* Alamat */
-            min-width: 400px; /* Diperlebar 2x */
+            min-width: 400px; 
         }
         #clearSearchBtn {
             border: none;
@@ -315,7 +318,7 @@
         const btnKonfirmasiHapusSemua = document.getElementById('btnKonfirmasiHapusSemua');
         const versionSpan = document.getElementById('appVersion');
 
-        const appVersion = 147; // Versi kode statis, diubah manual setiap ada revisi kode
+        const appVersion = 149; // Versi kode statis, diubah manual setiap ada revisi kode
         let localDataJemaat = []; // Local copy of data for filtering
         
         // Modal Instances
