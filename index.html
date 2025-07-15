@@ -304,7 +304,7 @@
         const btnKonfirmasiHapusSemua = document.getElementById('btnKonfirmasiHapusSemua');
         const versionSpan = document.getElementById('appVersion');
 
-        const appVersion = 137; // Versi kode statis, diubah manual setiap ada revisi kode
+        const appVersion = 138; // Versi kode statis, diubah manual setiap ada revisi kode
         let localDataJemaat = []; // Local copy of data for filtering
         
         // Modal Instances
@@ -338,7 +338,7 @@
          */
         function renderTable(data) {
             // Sort data by 'no' before rendering
-            const sortedData = [...data].sort((a, b) => a.no - b.no);
+            const sortedData = [...data].sort((a, b) => parseInt(a.no, 10) - parseInt(b.no, 10));
 
             tabelJemaat.innerHTML = '';
             if (sortedData.length === 0) {
@@ -373,7 +373,6 @@
          */
         function updateInfo() {
             jumlahDataSpan.textContent = localDataJemaat.length;
-            updateTerakhirSpan.textContent = `Update terakhir: ${new Date().toLocaleString('id-ID')}`;
             
             const major = Math.floor(appVersion / 100);
             const minor = appVersion % 100;
@@ -685,6 +684,7 @@
         // --- INISIALISASI APLIKASI & FIREBASE LISTENER ---
         initializeModals();
         updateFormState('add');
+        updateInfo(); // Panggil sekali saat load untuk menampilkan versi
 
         onSnapshot(jemaatCollectionRef, (snapshot) => {
             localDataJemaat = [];
@@ -692,7 +692,7 @@
                 localDataJemaat.push({ ...doc.data(), id: doc.id });
             });
             renderTable(localDataJemaat);
-            updateInfo();
+            updateInfo(); // Panggil lagi untuk update jumlah data
         }, (error) => {
             console.error("Error fetching data: ", error);
             showNotification("Gagal memuat data dari database. Pastikan koneksi internet Anda stabil.");
