@@ -178,7 +178,7 @@
                                 </tr>
                             </thead>
                             <tbody id="tabelJemaat">
-                                <!-- Data akan diisi oleh JavaScript -->
+                                <tr><td colspan="11" class="text-center">Memuat data dari database...</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -304,7 +304,7 @@
         const btnKonfirmasiHapusSemua = document.getElementById('btnKonfirmasiHapusSemua');
         const versionSpan = document.getElementById('appVersion');
 
-        const appVersion = 138; // Versi kode statis, diubah manual setiap ada revisi kode
+        const appVersion = 139; // Versi kode statis, diubah manual setiap ada revisi kode
         let localDataJemaat = []; // Local copy of data for filtering
         
         // Modal Instances
@@ -693,6 +693,7 @@
             });
             renderTable(localDataJemaat);
             updateInfo(); // Panggil lagi untuk update jumlah data
+            updateTerakhirSpan.textContent = `Update terakhir: ${new Date().toLocaleString('id-ID')}`;
         }, (error) => {
             console.error("Error fetching data: ", error);
             showNotification("Gagal memuat data dari database. Pastikan koneksi internet Anda stabil.");
