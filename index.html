@@ -254,424 +254,448 @@
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- VARIABEL GLOBAL & REFERENSI DOM ---
-            const formJemaat = document.getElementById('formJemaat');
-            const formTitle = document.getElementById('formTitle');
-            const formFieldset = document.getElementById('formFieldset');
-            const formButtons = document.getElementById('formButtons');
-            
-            const editIdInput = document.getElementById('editId');
-            const noJemaatInput = document.getElementById('noJemaat');
-            const noBaptisInput = document.getElementById('noBaptis');
-            const namaInput = document.getElementById('nama');
-            const tempatLahirInput = document.getElementById('tempatLahir');
-            const tglLahirInput = document.getElementById('tglLahir');
-            const tglBaptisInput = document.getElementById('tglBaptis');
-            const noTeleponInput = document.getElementById('noTelepon');
-            const alamatInput = document.getElementById('alamat');
-            const statusJemaatSelect = document.getElementById('statusJemaat');
-            
-            const tabelJemaat = document.getElementById('tabelJemaat');
-            const jumlahDataSpan = document.getElementById('jumlahData');
-            const updateTerakhirSpan = document.getElementById('updateTerakhir');
-            const cariDataInput = document.getElementById('cariData');
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+        import { getFirestore, collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, serverTimestamp, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-            const btnImport = document.getElementById('btnImport');
-            const importFileInput = document.getElementById('importFileInput');
-            const btnExport = document.getElementById('btnExport');
-            const btnKonfirmasiHapusSemua = document.getElementById('btnKonfirmasiHapusSemua');
-            const versionSpan = document.getElementById('appVersion');
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDST2tE8X4pKUdg114xgG2QLW7-1RJXwLw",
+            authDomain: "data-jemaat-gsri-skw.firebaseapp.com",
+            projectId: "data-jemaat-gsri-skw",
+            storageBucket: "data-jemaat-gsri-skw.appspot.com",
+            messagingSenderId: "960533820471",
+            appId: "1:960533820471:web:fe86a8921dcb7ae632fbb2",
+            measurementId: "G-VXHNCYRM13"
+        };
 
-            const STORAGE_KEY = 'dataJemaatGSRISingkawang';
-            const LAST_UPDATE_KEY = 'dataJemaatGSRILastUpdate';
-            const appVersion = 136; // Versi kode statis, diubah manual setiap ada revisi kode
-            let dataJemaat = [];
-            
-            // Modal Instances
-            let hapusSemuaModal, notificationModal, confirmDeleteModal;
-            let rowToDeleteId = null;
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const jemaatCollectionRef = collection(db, "jemaat");
 
-            // --- FUNGSI INTI ---
+        // --- VARIABEL GLOBAL & REFERENSI DOM ---
+        const formJemaat = document.getElementById('formJemaat');
+        const formTitle = document.getElementById('formTitle');
+        const formFieldset = document.getElementById('formFieldset');
+        const formButtons = document.getElementById('formButtons');
+        
+        const editIdInput = document.getElementById('editId');
+        const noJemaatInput = document.getElementById('noJemaat');
+        const noBaptisInput = document.getElementById('noBaptis');
+        const namaInput = document.getElementById('nama');
+        const tempatLahirInput = document.getElementById('tempatLahir');
+        const tglLahirInput = document.getElementById('tglLahir');
+        const tglBaptisInput = document.getElementById('tglBaptis');
+        const noTeleponInput = document.getElementById('noTelepon');
+        const alamatInput = document.getElementById('alamat');
+        const statusJemaatSelect = document.getElementById('statusJemaat');
+        
+        const tabelJemaat = document.getElementById('tabelJemaat');
+        const jumlahDataSpan = document.getElementById('jumlahData');
+        const updateTerakhirSpan = document.getElementById('updateTerakhir');
+        const cariDataInput = document.getElementById('cariData');
 
-            /**
-             * Menampilkan notifikasi menggunakan modal.
-             * @param {string} message - Pesan yang akan ditampilkan.
-             */
-            function showNotification(message) {
-                const modalBody = document.getElementById('notificationModalBody');
-                modalBody.textContent = message;
-                notificationModal.show();
+        const btnImport = document.getElementById('btnImport');
+        const importFileInput = document.getElementById('importFileInput');
+        const btnExport = document.getElementById('btnExport');
+        const btnKonfirmasiHapusSemua = document.getElementById('btnKonfirmasiHapusSemua');
+        const versionSpan = document.getElementById('appVersion');
+
+        const appVersion = 137; // Versi kode statis, diubah manual setiap ada revisi kode
+        let localDataJemaat = []; // Local copy of data for filtering
+        
+        // Modal Instances
+        let hapusSemuaModal, notificationModal, confirmDeleteModal;
+        let rowToDeleteId = null;
+
+        // --- FUNGSI INTI ---
+
+        /**
+         * Menampilkan notifikasi menggunakan modal.
+         * @param {string} message - Pesan yang akan ditampilkan.
+         */
+        function showNotification(message) {
+            const modalBody = document.getElementById('notificationModalBody');
+            modalBody.textContent = message;
+            notificationModal.show();
+        }
+
+        /**
+         * Menginisialisasi modal.
+         */
+        function initializeModals() {
+            hapusSemuaModal = new bootstrap.Modal(document.getElementById('hapusSemuaModal'));
+            notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+            confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+        }
+
+        /**
+         * Merender ulang tabel data jemaat.
+         * @param {Array} data - Data yang akan ditampilkan di tabel.
+         */
+        function renderTable(data) {
+            // Sort data by 'no' before rendering
+            const sortedData = [...data].sort((a, b) => a.no - b.no);
+
+            tabelJemaat.innerHTML = '';
+            if (sortedData.length === 0) {
+                tabelJemaat.innerHTML = '<tr><td colspan="11" class="text-center">Tidak ada data.</td></tr>';
+                return;
             }
+            sortedData.forEach(jemaat => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${jemaat.no}</td>
+                    <td>${jemaat.noBaptis || '-'}</td>
+                    <td>${formatDate(jemaat.tglBaptis)}</td>
+                    <td>${jemaat.nama || '-'}</td>
+                    <td>${jemaat.jenisKelamin || 'Pria'}</td>
+                    <td>${jemaat.tempatLahir || '-'}</td>
+                    <td>${formatDate(jemaat.tglLahir)}</td>
+                    <td>${jemaat.noTelepon || '-'}</td>
+                    <td>${jemaat.alamat}</td>
+                    <td>${jemaat.statusJemaat || 'Aktif'}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm btn-view" data-id="${jemaat.id}" title="Lihat Data"><i class="bi bi-eye-fill"></i></button>
+                        <button class="btn btn-warning btn-sm btn-edit" data-id="${jemaat.id}" title="Edit Data"><i class="bi bi-pencil-square"></i></button>
+                        <button class="btn btn-danger btn-sm btn-delete" data-id="${jemaat.id}" title="Hapus Data"><i class="bi bi-trash"></i></button>
+                    </td>
+                `;
+                tabelJemaat.appendChild(tr);
+            });
+        }
 
-            /**
-             * Memuat data dari localStorage dan menginisialisasi modal.
-             */
-            function loadDataFromStorage() {
-                const data = localStorage.getItem(STORAGE_KEY);
-                dataJemaat = data ? JSON.parse(data) : [];
-                
-                renderTable();
-                updateInfo();
-                updateFormState('add'); // Set form ke state awal
-                
-                // Inisialisasi semua modal
-                hapusSemuaModal = new bootstrap.Modal(document.getElementById('hapusSemuaModal'));
-                notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
-                confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
-            }
+        /**
+         * Memperbarui informasi jumlah data dan versi aplikasi.
+         */
+        function updateInfo() {
+            jumlahDataSpan.textContent = localDataJemaat.length;
+            updateTerakhirSpan.textContent = `Update terakhir: ${new Date().toLocaleString('id-ID')}`;
+            
+            const major = Math.floor(appVersion / 100);
+            const minor = appVersion % 100;
+            versionSpan.textContent = `Versi ${major}.${minor.toString().padStart(2, '0')}`;
+        }
 
-            /**
-             * Menyimpan data ke localStorage dan memperbarui info.
-             */
-            function saveDataToStorage() {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(dataJemaat));
-                const timestamp = new Date();
-                localStorage.setItem(LAST_UPDATE_KEY, timestamp.toISOString());
+        /**
+         * Mengatur state form (tampilan, tombol, dan field).
+         * @param {'add'|'view'|'edit'} mode - Mode form.
+         * @param {object|null} jemaat - Data jemaat untuk mode view/edit.
+         */
+        function updateFormState(mode, jemaat = null) {
+            formJemaat.reset();
+            editIdInput.value = '';
+            formFieldset.disabled = false;
 
-                renderTable();
-                updateInfo();
-            }
-
-            /**
-             * Merender ulang tabel data jemaat.
-             * @param {Array} data - Data yang akan ditampilkan di tabel (default: semua data).
-             */
-            function renderTable(data = dataJemaat) {
-                tabelJemaat.innerHTML = '';
-                if (data.length === 0) {
-                    tabelJemaat.innerHTML = '<tr><td colspan="11" class="text-center">Tidak ada data.</td></tr>';
-                    return;
-                }
-                data.forEach(jemaat => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td>${jemaat.no}</td>
-                        <td>${jemaat.noBaptis || '-'}</td>
-                        <td>${formatDate(jemaat.tglBaptis)}</td>
-                        <td>${jemaat.nama || '-'}</td>
-                        <td>${jemaat.jenisKelamin || 'Pria'}</td>
-                        <td>${jemaat.tempatLahir || '-'}</td>
-                        <td>${formatDate(jemaat.tglLahir)}</td>
-                        <td>${jemaat.noTelepon || '-'}</td>
-                        <td>${jemaat.alamat}</td>
-                        <td>${jemaat.statusJemaat || 'Aktif'}</td>
-                        <td>
-                            <button class="btn btn-info btn-sm btn-view" data-id="${jemaat.id}" title="Lihat Data"><i class="bi bi-eye-fill"></i></button>
-                            <button class="btn btn-warning btn-sm btn-edit" data-id="${jemaat.id}" title="Edit Data"><i class="bi bi-pencil-square"></i></button>
-                            <button class="btn btn-danger btn-sm btn-delete" data-id="${jemaat.id}" title="Hapus Data"><i class="bi bi-trash"></i></button>
-                        </td>
+            switch(mode) {
+                case 'view':
+                    formTitle.innerHTML = '<i class="bi bi-person-lines-fill btn-icon"></i>Lihat Data Jemaat';
+                    formFieldset.disabled = true;
+                    if (jemaat) populateForm(jemaat);
+                    formButtons.innerHTML = `
+                        <button type="button" class="btn btn-primary btn-sm" id="btnEditFromView"><i class="bi bi-pencil-square btn-icon"></i>Edit</button>
+                        <button type="button" class="btn btn-secondary btn-sm" id="btnOKFromView"><i class="bi bi-check-lg btn-icon"></i>OK</button>
                     `;
-                    tabelJemaat.appendChild(tr);
-                });
+                    document.getElementById('btnEditFromView').addEventListener('click', () => updateFormState('edit', jemaat));
+                    document.getElementById('btnOKFromView').addEventListener('click', () => updateFormState('add'));
+                    break;
+                
+                case 'edit':
+                    formTitle.innerHTML = '<i class="bi bi-pencil-fill btn-icon"></i>Edit Data Jemaat';
+                    if (jemaat) populateForm(jemaat);
+                    formButtons.innerHTML = `
+                        <button type="button" class="btn btn-warning btn-sm" id="btnCancelEdit"><i class="bi bi-x-circle btn-icon"></i>Batal</button>
+                        <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-check-square btn-icon"></i>Update Data</button>
+                    `;
+                    document.getElementById('btnCancelEdit').addEventListener('click', () => updateFormState('add'));
+                    break;
+
+                case 'add':
+                default:
+                    formTitle.innerHTML = '<i class="bi bi-person-plus-fill btn-icon"></i>Tambah Data Jemaat';
+                    formButtons.innerHTML = `
+                        <button type="button" class="btn btn-secondary btn-sm" id="btnResetForm"><i class="bi bi-x-lg btn-icon"></i>Hapus Form</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-save btn-icon"></i>Simpan Data</button>
+                    `;
+                    document.getElementById('btnResetForm').addEventListener('click', () => formJemaat.reset());
+                    break;
+            }
+        }
+        
+        /**
+         * Mengisi form dengan data jemaat.
+         * @param {object} jemaat - Objek data jemaat.
+         */
+        function populateForm(jemaat) {
+            editIdInput.value = jemaat.id;
+            noJemaatInput.value = jemaat.no;
+            noBaptisInput.value = jemaat.noBaptis;
+            namaInput.value = jemaat.nama;
+            
+            if (jemaat.jenisKelamin && document.querySelector(`input[name="jenisKelamin"][value="${jemaat.jenisKelamin}"]`)) {
+                document.querySelector(`input[name="jenisKelamin"][value="${jemaat.jenisKelamin}"]`).checked = true;
+            } else {
+                document.getElementById('kelaminPria').checked = true;
             }
 
-            /**
-             * Memperbarui informasi jumlah data, waktu update terakhir, dan versi aplikasi.
-             */
-            function updateInfo() {
-                jumlahDataSpan.textContent = dataJemaat.length;
-                const lastUpdate = localStorage.getItem(LAST_UPDATE_KEY);
-                if (lastUpdate) {
-                    const d = new Date(lastUpdate);
-                    updateTerakhirSpan.textContent = `Update terakhir: ${d.toLocaleDateString('id-ID')} ${d.toLocaleTimeString('id-ID')}`;
-                } else {
-                    updateTerakhirSpan.textContent = 'Update terakhir: -';
+            tempatLahirInput.value = jemaat.tempatLahir;
+            tglLahirInput.value = jemaat.tglLahir;
+            tglBaptisInput.value = jemaat.tglBaptis;
+            noTeleponInput.value = jemaat.noTelepon;
+            alamatInput.value = jemaat.alamat;
+            statusJemaatSelect.value = jemaat.statusJemaat || 'Aktif';
+        }
+
+        /**
+         * Memformat tanggal dari YYYY-MM-DD ke DD-MM-YYYY.
+         * @param {string} dateString - String tanggal dalam format YYYY-MM-DD.
+         * @returns {string} Tanggal terformat atau string kosong.
+         */
+        function formatDate(dateString) {
+            if (!dateString) return '-';
+            const [year, month, day] = dateString.split('-');
+            return `${day}-${month}-${year}`;
+        }
+
+        // --- EVENT LISTENERS ---
+
+        /**
+         * Menangani submit form untuk menambah atau mengedit data.
+         */
+        formJemaat.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const id = editIdInput.value;
+            const noJemaat = noJemaatInput.value.trim();
+            const nama = namaInput.value.trim();
+            const alamat = alamatInput.value.trim();
+
+            // Validasi input wajib
+            const errors = [];
+            if (!noJemaat) errors.push('No Jemaat');
+            if (!nama) errors.push('Nama');
+            if (!alamat) errors.push('Alamat Lengkap');
+
+            if (errors.length > 0) {
+                showNotification(`Data berikut wajib diisi: ${errors.join(', ')}.`);
+                return;
+            }
+
+            // Cek duplikasi No Jemaat
+            if (localDataJemaat.some(j => j.no === noJemaat && j.id !== id)) {
+                showNotification('No Jemaat sudah ada. Silakan gunakan nomor lain.');
+                return;
+            }
+
+            const dataBaru = {
+                no: noJemaat,
+                noBaptis: noBaptisInput.value.trim(),
+                nama: nama,
+                jenisKelamin: document.querySelector('input[name="jenisKelamin"]:checked').value,
+                tempatLahir: tempatLahirInput.value.trim(),
+                tglLahir: tglLahirInput.value,
+                tglBaptis: tglBaptisInput.value,
+                noTelepon: noTeleponInput.value.trim(),
+                alamat: alamat,
+                statusJemaat: statusJemaatSelect.value,
+                timestamp: serverTimestamp()
+            };
+
+            try {
+                if (id) { // Edit mode
+                    const docRef = doc(db, "jemaat", id);
+                    await setDoc(docRef, dataBaru, { merge: true });
+                } else { // Add mode
+                    await addDoc(jemaatCollectionRef, dataBaru);
                 }
-
-                const major = Math.floor(appVersion / 100);
-                const minor = appVersion % 100;
-                versionSpan.textContent = `Versi ${major}.${minor.toString().padStart(2, '0')}`;
+                updateFormState('add');
+            } catch (error) {
+                console.error("Error writing document: ", error);
+                showNotification("Gagal menyimpan data ke database.");
             }
+        });
 
-            /**
-             * Mengatur state form (tampilan, tombol, dan field).
-             * @param {'add'|'view'|'edit'} mode - Mode form.
-             * @param {object|null} jemaat - Data jemaat untuk mode view/edit.
-             */
-            function updateFormState(mode, jemaat = null) {
-                formJemaat.reset();
-                editIdInput.value = '';
-                formFieldset.disabled = false;
+        /**
+         * Menangani klik pada tombol di tabel.
+         */
+        tabelJemaat.addEventListener('click', function(e) {
+            const target = e.target.closest('button');
+            if (!target) return;
 
-                switch(mode) {
-                    case 'view':
-                        formTitle.innerHTML = '<i class="bi bi-person-lines-fill btn-icon"></i>Lihat Data Jemaat';
-                        formFieldset.disabled = true;
-                        if (jemaat) populateForm(jemaat);
-                        formButtons.innerHTML = `
-                            <button type="button" class="btn btn-primary btn-sm" id="btnEditFromView"><i class="bi bi-pencil-square btn-icon"></i>Edit</button>
-                            <button type="button" class="btn btn-secondary btn-sm" id="btnOKFromView"><i class="bi bi-check-lg btn-icon"></i>OK</button>
-                        `;
-                        document.getElementById('btnEditFromView').addEventListener('click', () => updateFormState('edit', jemaat));
-                        document.getElementById('btnOKFromView').addEventListener('click', () => updateFormState('add'));
-                        break;
-                    
-                    case 'edit':
-                        formTitle.innerHTML = '<i class="bi bi-pencil-fill btn-icon"></i>Edit Data Jemaat';
-                        if (jemaat) populateForm(jemaat);
-                        formButtons.innerHTML = `
-                            <button type="button" class="btn btn-warning btn-sm" id="btnCancelEdit"><i class="bi bi-x-circle btn-icon"></i>Batal</button>
-                            <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-check-square btn-icon"></i>Update Data</button>
-                        `;
-                        document.getElementById('btnCancelEdit').addEventListener('click', () => updateFormState('add'));
-                        break;
+            const id = target.dataset.id;
+            const jemaat = localDataJemaat.find(j => j.id === id);
 
-                    case 'add':
-                    default:
-                        formTitle.innerHTML = '<i class="bi bi-person-plus-fill btn-icon"></i>Tambah Data Jemaat';
-                        formButtons.innerHTML = `
-                            <button type="button" class="btn btn-secondary btn-sm" id="btnResetForm"><i class="bi bi-x-lg btn-icon"></i>Hapus Form</button>
-                            <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-save btn-icon"></i>Simpan Data</button>
-                        `;
-                        document.getElementById('btnResetForm').addEventListener('click', () => formJemaat.reset());
-                        break;
+            if (target.classList.contains('btn-view')) {
+                if (jemaat) {
+                    updateFormState('view', jemaat);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             }
             
-            /**
-             * Mengisi form dengan data jemaat.
-             * @param {object} jemaat - Objek data jemaat.
-             */
-            function populateForm(jemaat) {
-                editIdInput.value = jemaat.id;
-                noJemaatInput.value = jemaat.no;
-                noBaptisInput.value = jemaat.noBaptis;
-                namaInput.value = jemaat.nama;
-                
-                if (jemaat.jenisKelamin && document.querySelector(`input[name="jenisKelamin"][value="${jemaat.jenisKelamin}"]`)) {
-                    document.querySelector(`input[name="jenisKelamin"][value="${jemaat.jenisKelamin}"]`).checked = true;
-                } else {
-                    document.getElementById('kelaminPria').checked = true;
+            if (target.classList.contains('btn-edit')) {
+                if (jemaat) {
+                    updateFormState('edit', jemaat);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
-
-                tempatLahirInput.value = jemaat.tempatLahir;
-                tglLahirInput.value = jemaat.tglLahir;
-                tglBaptisInput.value = jemaat.tglBaptis;
-                noTeleponInput.value = jemaat.noTelepon;
-                alamatInput.value = jemaat.alamat;
-                statusJemaatSelect.value = jemaat.statusJemaat || 'Aktif';
             }
 
-            /**
-             * Memformat tanggal dari YYYY-MM-DD ke DD-MM-YYYY.
-             * @param {string} dateString - String tanggal dalam format YYYY-MM-DD.
-             * @returns {string} Tanggal terformat atau string kosong.
-             */
-            function formatDate(dateString) {
-                if (!dateString) return '-';
-                const [year, month, day] = dateString.split('-');
-                return `${day}-${month}-${year}`;
+            if (target.classList.contains('btn-delete')) {
+                rowToDeleteId = id;
+                confirmDeleteModal.show();
             }
+        });
 
-            // --- EVENT LISTENERS ---
-
-            /**
-             * Menangani submit form untuk menambah atau mengedit data.
-             */
-            formJemaat.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const id = editIdInput.value;
-                const noJemaat = noJemaatInput.value.trim();
-                const nama = namaInput.value.trim();
-                const alamat = alamatInput.value.trim();
-
-                // Validasi input wajib
-                const errors = [];
-                if (!noJemaat) errors.push('No Jemaat');
-                if (!nama) errors.push('Nama');
-                if (!alamat) errors.push('Alamat Lengkap');
-
-                if (errors.length > 0) {
-                    showNotification(`Data berikut wajib diisi: ${errors.join(', ')}.`);
-                    return;
-                }
-
-                // Cek duplikasi No Jemaat
-                if (dataJemaat.some(j => j.no === noJemaat && j.id !== id)) {
-                    showNotification('No Jemaat sudah ada. Silakan gunakan nomor lain.');
-                    return;
-                }
-
-                const dataBaru = {
-                    id: id || Date.now().toString(),
-                    no: noJemaat,
-                    noBaptis: noBaptisInput.value.trim(),
-                    nama: nama,
-                    jenisKelamin: document.querySelector('input[name="jenisKelamin"]:checked').value,
-                    tempatLahir: tempatLahirInput.value.trim(),
-                    tglLahir: tglLahirInput.value,
-                    tglBaptis: tglBaptisInput.value,
-                    noTelepon: noTeleponInput.value.trim(),
-                    alamat: alamat,
-                    statusJemaat: statusJemaatSelect.value
-                };
-
-                if (id) {
-                    const index = dataJemaat.findIndex(j => j.id === id);
-                    if (index > -1) dataJemaat[index] = dataBaru;
-                } else {
-                    dataJemaat.push(dataBaru);
-                }
-                
-                dataJemaat.sort((a, b) => a.no - b.no);
-                saveDataToStorage();
-                updateFormState('add');
-            });
-
-            /**
-             * Menangani klik pada tombol di tabel.
-             */
-            tabelJemaat.addEventListener('click', function(e) {
-                const target = e.target.closest('button');
-                if (!target) return;
-
-                const id = target.dataset.id;
-                const jemaat = dataJemaat.find(j => j.id === id);
-
-                if (target.classList.contains('btn-view')) {
-                    if (jemaat) {
-                        updateFormState('view', jemaat);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                }
-                
-                if (target.classList.contains('btn-edit')) {
-                    if (jemaat) {
-                        updateFormState('edit', jemaat);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                }
-
-                if (target.classList.contains('btn-delete')) {
-                    rowToDeleteId = id;
-                    confirmDeleteModal.show();
-                }
-            });
-
-            document.getElementById('btnKonfirmasiHapusBaris').addEventListener('click', function() {
-                if (rowToDeleteId) {
-                    dataJemaat = dataJemaat.filter(j => j.id !== rowToDeleteId);
-                    saveDataToStorage();
+        document.getElementById('btnKonfirmasiHapusBaris').addEventListener('click', async function() {
+            if (rowToDeleteId) {
+                try {
+                    await deleteDoc(doc(db, "jemaat", rowToDeleteId));
                     updateFormState('add');
                     rowToDeleteId = null;
-                }
-                confirmDeleteModal.hide();
-            });
-
-            cariDataInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const filteredData = dataJemaat.filter(j => {
-                    return (j.no && j.no.toLowerCase().includes(searchTerm)) ||
-                           (j.noBaptis && j.noBaptis.toLowerCase().includes(searchTerm)) ||
-                           (j.nama && j.nama.toLowerCase().includes(searchTerm)) ||
-                           (j.jenisKelamin && j.jenisKelamin.toLowerCase().includes(searchTerm)) ||
-                           (j.tempatLahir && j.tempatLahir.toLowerCase().includes(searchTerm)) ||
-                           (j.noTelepon && j.noTelepon.toLowerCase().includes(searchTerm)) ||
-                           (j.statusJemaat && j.statusJemaat.toLowerCase().includes(searchTerm)) ||
-                           (j.alamat && j.alamat.toLowerCase().includes(searchTerm)) ||
-                           (j.tglLahir && j.tglLahir.startsWith(searchTerm)) ||
-                           (j.tglBaptis && j.tglBaptis.startsWith(searchTerm));
-                });
-                renderTable(filteredData);
-            });
-
-            btnKonfirmasiHapusSemua.addEventListener('click', function() {
-                dataJemaat = [];
-                saveDataToStorage();
-                updateFormState('add');
-                hapusSemuaModal.hide();
-            });
-
-            btnExport.addEventListener('click', function() {
-                try {
-                    if (dataJemaat.length === 0) {
-                        showNotification('Tidak ada data untuk diekspor.');
-                        return;
-                    }
-                    const headers = ['No Jemaat', 'No Baptis', 'Tgl Baptis', 'Nama', 'Jenis Kelamin', 'Tempat Lahir', 'Tgl Lahir', 'No Telepon', 'Alamat', 'Status Jemaat'];
-                    let tsvContent = headers.join('\t') + '\n';
-
-                    dataJemaat.forEach(jemaat => {
-                        const row = [
-                            jemaat.no || '', jemaat.noBaptis || '', jemaat.tglBaptis || '', jemaat.nama || '',
-                            jemaat.jenisKelamin || '', jemaat.tempatLahir || '', jemaat.tglLahir || '',
-                            jemaat.noTelepon || '', (jemaat.alamat || '').replace(/\n/g, ' '), jemaat.statusJemaat || ''
-                        ];
-                        tsvContent += row.join('\t') + '\n';
-                    });
-
-                    const blob = new Blob([tsvContent], { type: 'text/tab-separated-values;charset=utf-8;' });
-                    const link = document.createElement("a");
-                    link.href = URL.createObjectURL(blob);
-                    link.download = "Data-Jemaat-GSRI-Skw.tsv";
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    URL.revokeObjectURL(link.href);
                 } catch (error) {
-                    console.error('Export failed:', error);
-                    showNotification('Gagal mengekspor file. Silakan coba lagi atau hubungi dukungan teknis.');
+                    console.error("Error removing document: ", error);
+                    showNotification("Gagal menghapus data.");
                 }
+            }
+            confirmDeleteModal.hide();
+        });
+
+        cariDataInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const filteredData = localDataJemaat.filter(j => {
+                return (j.no && j.no.toLowerCase().includes(searchTerm)) ||
+                       (j.noBaptis && j.noBaptis.toLowerCase().includes(searchTerm)) ||
+                       (j.nama && j.nama.toLowerCase().includes(searchTerm)) ||
+                       (j.jenisKelamin && j.jenisKelamin.toLowerCase().includes(searchTerm)) ||
+                       (j.tempatLahir && j.tempatLahir.toLowerCase().includes(searchTerm)) ||
+                       (j.noTelepon && j.noTelepon.toLowerCase().includes(searchTerm)) ||
+                       (j.statusJemaat && j.statusJemaat.toLowerCase().includes(searchTerm)) ||
+                       (j.alamat && j.alamat.toLowerCase().includes(searchTerm)) ||
+                       (j.tglLahir && j.tglLahir.startsWith(searchTerm)) ||
+                       (j.tglBaptis && j.tglBaptis.startsWith(searchTerm));
             });
-            
-            btnImport.addEventListener('click', () => importFileInput.click());
+            renderTable(filteredData);
+        });
 
-            importFileInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (!file) return;
+        btnKonfirmasiHapusSemua.addEventListener('click', async function() {
+            try {
+                const querySnapshot = await getDocs(jemaatCollectionRef);
+                querySnapshot.forEach(async (document) => {
+                    await deleteDoc(doc(db, "jemaat", document.id));
+                });
+                updateFormState('add');
+            } catch (error) {
+                console.error("Error deleting all documents: ", error);
+                showNotification("Gagal menghapus semua data.");
+            }
+            hapusSemuaModal.hide();
+        });
 
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const content = event.target.result;
-                    const lines = content.split('\n').filter(line => line.trim() !== '');
-                    
-                    if (lines.length <= 1) {
-                        showNotification('File kosong atau hanya berisi header.');
-                        return;
+        btnExport.addEventListener('click', function() {
+            try {
+                if (localDataJemaat.length === 0) {
+                    showNotification('Tidak ada data untuk diekspor.');
+                    return;
+                }
+                const headers = ['No Jemaat', 'No Baptis', 'Tgl Baptis', 'Nama', 'Jenis Kelamin', 'Tempat Lahir', 'Tgl Lahir', 'No Telepon', 'Alamat', 'Status Jemaat'];
+                let tsvContent = headers.join('\t') + '\n';
+
+                localDataJemaat.forEach(jemaat => {
+                    const row = [
+                        jemaat.no || '', jemaat.noBaptis || '', jemaat.tglBaptis || '', jemaat.nama || '',
+                        jemaat.jenisKelamin || '', jemaat.tempatLahir || '', jemaat.tglLahir || '',
+                        jemaat.noTelepon || '', (jemaat.alamat || '').replace(/\n/g, ' '), jemaat.statusJemaat || ''
+                    ];
+                    tsvContent += row.join('\t') + '\n';
+                });
+
+                const blob = new Blob([tsvContent], { type: 'text/tab-separated-values;charset=utf-8;' });
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = "Data-Jemaat-GSRI-Skw.tsv";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(link.href);
+            } catch (error) {
+                console.error('Export failed:', error);
+                showNotification('Gagal mengekspor file. Silakan coba lagi atau hubungi dukungan teknis.');
+            }
+        });
+        
+        btnImport.addEventListener('click', () => importFileInput.click());
+
+        importFileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const content = event.target.result;
+                const lines = content.split('\n').filter(line => line.trim() !== '');
+                
+                if (lines.length <= 1) {
+                    showNotification('File kosong atau hanya berisi header.');
+                    return;
+                }
+
+                const importedData = [];
+                for (let i = 1; i < lines.length; i++) {
+                    const cols = lines[i].split('\t');
+                    const noJemaat = cols[0] ? cols[0].trim() : '';
+
+                    if (noJemaat && !localDataJemaat.some(j => j.no === noJemaat)) {
+                        const newJemaat = {
+                            no: noJemaat,
+                            noBaptis: cols[1] ? cols[1].trim() : '',
+                            tglBaptis: cols[2] ? cols[2].trim() : '',
+                            nama: cols[3] ? cols[3].trim() : '',
+                            jenisKelamin: cols[4] ? cols[4].trim() : 'Pria',
+                            tempatLahir: cols[5] ? cols[5].trim() : '',
+                            tglLahir: cols[6] ? cols[6].trim() : '',
+                            noTelepon: cols[7] ? cols[7].trim() : '',
+                            alamat: cols[8] ? cols[8].trim() : '',
+                            statusJemaat: cols[9] ? cols[9].trim() : 'Aktif',
+                            timestamp: serverTimestamp()
+                        };
+                        importedData.push(newJemaat);
                     }
+                }
 
-                    const importedData = [];
-                    for (let i = 1; i < lines.length; i++) {
-                        const cols = lines[i].split('\t');
-                        const noJemaat = cols[0] ? cols[0].trim() : '';
-
-                        if (noJemaat && !dataJemaat.some(j => j.no === noJemaat)) {
-                            const newJemaat = {
-                                id: Date.now().toString() + i,
-                                no: noJemaat,
-                                noBaptis: cols[1] ? cols[1].trim() : '',
-                                tglBaptis: cols[2] ? cols[2].trim() : '',
-                                nama: cols[3] ? cols[3].trim() : '',
-                                jenisKelamin: cols[4] ? cols[4].trim() : 'Pria',
-                                tempatLahir: cols[5] ? cols[5].trim() : '',
-                                tglLahir: cols[6] ? cols[6].trim() : '',
-                                noTelepon: cols[7] ? cols[7].trim() : '',
-                                alamat: cols[8] ? cols[8].trim() : '',
-                                statusJemaat: cols[9] ? cols[9].trim() : 'Aktif'
-                            };
-                            importedData.push(newJemaat);
+                if (importedData.length > 0) {
+                    importedData.forEach(async (jemaat) => {
+                        try {
+                            await addDoc(jemaatCollectionRef, jemaat);
+                        } catch (error) {
+                            console.error("Error importing document: ", error);
                         }
-                    }
+                    });
+                    showNotification(`${importedData.length} data baru berhasil diimpor.`);
+                } else {
+                    showNotification('Tidak ada data baru yang diimpor. Mungkin No Jemaat sudah ada atau format file salah.');
+                }
+                importFileInput.value = '';
+            };
+            reader.onerror = () => showNotification('Gagal membaca file.');
+            reader.readAsText(file);
+        });
 
-                    if (importedData.length > 0) {
-                        dataJemaat.push(...importedData);
-                        dataJemaat.sort((a, b) => a.no - b.no);
-                        saveDataToStorage();
-                        showNotification(`${importedData.length} data baru berhasil diimpor.`);
-                    } else {
-                        showNotification('Tidak ada data baru yang diimpor. Mungkin No Jemaat sudah ada atau format file salah.');
-                    }
-                    importFileInput.value = '';
-                };
-                reader.onerror = () => showNotification('Gagal membaca file.');
-                reader.readAsText(file);
+
+        // --- INISIALISASI APLIKASI & FIREBASE LISTENER ---
+        initializeModals();
+        updateFormState('add');
+
+        onSnapshot(jemaatCollectionRef, (snapshot) => {
+            localDataJemaat = [];
+            snapshot.forEach((doc) => {
+                localDataJemaat.push({ ...doc.data(), id: doc.id });
             });
-
-
-            // --- INISIALISASI APLIKASI ---
-            loadDataFromStorage();
+            renderTable(localDataJemaat);
+            updateInfo();
+        }, (error) => {
+            console.error("Error fetching data: ", error);
+            showNotification("Gagal memuat data dari database. Pastikan koneksi internet Anda stabil.");
         });
     </script>
 
