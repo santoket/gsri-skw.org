@@ -58,6 +58,15 @@
         .table th:nth-child(9), .table td:nth-child(9) { /* Alamat */
             min-width: 400px; /* Diperlebar 2x */
         }
+        #clearSearchBtn {
+            border: none;
+            background: none;
+            color: #6c757d;
+            cursor: pointer;
+        }
+        #clearSearchBtn:hover {
+            color: #212529;
+        }
     </style>
 </head>
 <body>
@@ -155,8 +164,9 @@
                         <h5 class="mb-0">Daftar Jemaat (<span id="jumlahData">0</span>)</h5>
                         <small class="text-muted" id="updateTerakhir">Update data terakhir: -</small>
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-2 position-relative">
                         <input type="text" id="cariData" class="form-control" placeholder="Cari data berdasarkan No, Nama, Tahun Lahir/Baptis, dll...">
+                        <button id="clearSearchBtn" class="position-absolute top-50 end-0 translate-middle-y me-2" style="display: none;"><i class="bi bi-x-lg"></i></button>
                     </div>
                 </div>
                 <div class="card-body p-0">
@@ -297,6 +307,7 @@
         const jumlahDataSpan = document.getElementById('jumlahData');
         const updateTerakhirSpan = document.getElementById('updateTerakhir');
         const cariDataInput = document.getElementById('cariData');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
 
         const btnImport = document.getElementById('btnImport');
         const importFileInput = document.getElementById('importFileInput');
@@ -304,7 +315,7 @@
         const btnKonfirmasiHapusSemua = document.getElementById('btnKonfirmasiHapusSemua');
         const versionSpan = document.getElementById('appVersion');
 
-        const appVersion = 146; // Versi kode statis, diubah manual setiap ada revisi kode
+        const appVersion = 147; // Versi kode statis, diubah manual setiap ada revisi kode
         let localDataJemaat = []; // Local copy of data for filtering
         
         // Modal Instances
@@ -562,6 +573,8 @@
 
         cariDataInput.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
+            clearSearchBtn.style.display = searchTerm.length > 0 ? 'block' : 'none';
+
             const filteredData = localDataJemaat.filter(j => {
                 return (j.no && j.no.toLowerCase().includes(searchTerm)) ||
                        (j.noBaptis && j.noBaptis.toLowerCase().includes(searchTerm)) ||
@@ -575,6 +588,12 @@
                        (j.tglBaptis && j.tglBaptis.startsWith(searchTerm));
             });
             renderTable(filteredData);
+        });
+
+        clearSearchBtn.addEventListener('click', function() {
+            cariDataInput.value = '';
+            const event = new Event('input', { bubbles: true });
+            cariDataInput.dispatchEvent(event);
         });
 
         btnKonfirmasiHapusSemua.addEventListener('click', async function() {
