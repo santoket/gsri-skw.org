@@ -318,7 +318,7 @@
         const btnKonfirmasiHapusSemua = document.getElementById('btnKonfirmasiHapusSemua');
         const versionSpan = document.getElementById('appVersion');
 
-        const appVersion = 149; // Versi kode statis, diubah manual setiap ada revisi kode
+        const appVersion = 150; // Versi kode statis, diubah manual setiap ada revisi kode
         let localDataJemaat = []; // Local copy of data for filtering
         
         // Modal Instances
@@ -597,6 +597,7 @@
             cariDataInput.value = '';
             const event = new Event('input', { bubbles: true });
             cariDataInput.dispatchEvent(event);
+            cariDataInput.focus();
         });
 
         btnKonfirmasiHapusSemua.addEventListener('click', async function() {
